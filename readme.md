@@ -1,5 +1,6 @@
 # bevy_mod_erased_component_registry
 
+[![crates.io](https://img.shields.io/crates/v/bevy_mod_erased_component_registry.svg)](https://crates.io/crates/bevy_mod_erased_component_registry)
 [![ci](https://github.com/AlexAegis/bevy_mod_erased_component_registry/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAegis/bevy_mod_erased_component_registry/actions/workflows/ci.yml)
 
 Insert components into entities by their `TypeId`!
