@@ -1,0 +1,18 @@
+# https://rust-lang.github.io/mdBook/format/configuration/general.html
+
+[book]
+title = "bevy_mod_erased_component_registry"
+authors = ["AlexAegis"]
+description = "Usage and development documentation of bevy_mod_erased_component_registry."
+src = "docs"
+
+[build]
+build-dir = "target/book"
+create-missing = true
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output.html]
+additional-js = ["docs/assets/mermaid.min.js", "docs/mermaid-init.js"]
+git-repository-url = "https://github.com/AlexAegis/bevy_mod_erased_component_registry"
