@@ -8,7 +8,7 @@ homepage = "https://github.com/AlexAegis/bevy_mod_erased_component_registry"
 repository = "https://github.com/AlexAegis/bevy_mod_erased_component_registry"
 documentation = "https://github.com/AlexAegis/bevy_mod_erased_component_registry"
 authors = ["alexaegis"]
-license-file = "license"
+license = "MIT"
 readme = "readme.md"
 
 publish = true
