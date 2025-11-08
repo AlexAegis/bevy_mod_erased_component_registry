@@ -12,9 +12,7 @@ fn main() -> AppExit {
 	App::new()
 		.add_plugins((
 			DefaultPlugins,
-			EguiPlugin {
-				enable_multipass_for_primary_context: true,
-			},
+			EguiPlugin::default(),
 			WorldInspectorPlugin::new(),
 		))
 		.insert_resource(ExampleErasedComponents {
@@ -23,14 +21,22 @@ fn main() -> AppExit {
 		})
 		.register_erased_component::<GenericFlagComponent<A>>()
 		.register_erased_component::<GenericFlagComponent<B>>()
+		.add_systems(Startup, setup)
 		.add_systems(
 			Update,
 			(
-				send_event(AppExit::Success).run_if(input_just_pressed(KeyCode::Escape)),
+				send_message(AppExit::Success).run_if(input_just_pressed(KeyCode::Escape)),
 				spawn_new_random_flag.run_if(input_just_pressed(KeyCode::Space)),
 			),
 		)
 		.run()
+}
+
+fn setup(mut commands: Commands) {
+	commands.spawn((
+		Camera3d::default(),
+		Transform::from_xyz(1., 4., 5.).looking_at(Vec3::ZERO, Vec3::Y),
+	));
 }
 
 fn spawn_new_random_flag(
@@ -65,8 +71,8 @@ pub struct GenericFlagComponent<F> {
 	_phantom_data: PhantomData<F>,
 }
 
-fn send_event<E: Event + Clone>(event: E) -> impl Fn(EventWriter<E>) {
-	move |mut event_writer: EventWriter<E>| {
+fn send_message<M: Message + Clone>(event: M) -> impl Fn(MessageWriter<M>) {
+	move |mut event_writer: MessageWriter<M>| {
 		event_writer.write(event.clone());
 	}
 }
