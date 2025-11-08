@@ -44,6 +44,40 @@ actual type of this component!
 cargo run -p bevy_mod_erased_component_registry --example erased_component_registry_example --features example
 ```
 
+## Example Usecase
+
+With required components, if you know that the entity where you use `Thing<T>`
+will only ever have one kind of `Thing<T>` on it, you can require another
+component that will hold the previous components `TypeId`! Giving you something
+you can query without `T`, and create a new instance of the original
+component without even knowing which kind of `Thing<T>` it was!
+
+```rs
+use core::marker::PhantomData;
+use std::any::TypeId;
+
+use bevy_ecs::component::Component;
+
+#[derive(Component)]
+#[require(ErasedThing::new::<T>())]
+pub struct Thing<T> {
+    _phantom_data: PhantomData<T>,
+}
+
+#[derive(Component)]
+pub struct ErasedThing {
+    type_id: TypeId,
+}
+
+impl ErasedThing {
+    fn new<T: 'static>() -> Self {
+        Self {
+            type_id: TypeId::of::<Thing<T>>(),
+        }
+    }
+}
+```
+
 ## Why?
 
 Bevy can insert components by their `ComponentId` into an entity, but it
@@ -105,4 +139,5 @@ required cargo extensions and rustup components used in this repository.
 
 | Bevy | bevy_mod_erased_component_registry |
 | ---- | ---------------------------------- |
+| 0.17 | 0.2                                |
 | 0.16 | 0.1                                |
