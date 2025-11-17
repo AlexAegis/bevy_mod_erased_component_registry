@@ -12,18 +12,22 @@ pub struct ErasedComponentRegistry {
 }
 
 impl ErasedComponentRegistry {
-	pub fn register<T: FromWorld + Send + Sync + 'static>(&mut self) {
+	pub(crate) fn register<T: FromWorld + Send + Sync + 'static>(&mut self) {
 		self.registry
 			.insert(TypeId::of::<T>(), |world: &mut World| {
 				Box::new(T::from_world(world))
 			});
 	}
 
-	pub fn get_constructor(
+	pub(crate) fn get_constructor(
 		&self,
 		type_id: TypeId,
 	) -> Option<&fn(&mut World) -> Box<dyn Any + Send + Sync>> {
 		self.registry.get(&type_id)
+	}
+
+	pub fn is_registered(&self, type_id: &TypeId) -> bool {
+		self.registry.contains_key(type_id)
 	}
 }
 
