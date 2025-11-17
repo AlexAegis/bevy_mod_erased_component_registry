@@ -21,6 +21,7 @@ dev = ["bevy/dynamic_linking"]
 example = ["dev"]
 
 [dependencies]
+
 derive-where = { workspace = true }
 bevy_app = { workspace = true }
 bevy_ecs = { workspace = true }
@@ -32,6 +33,7 @@ bevy = { workspace = true }
 rand = { workspace = true }
 bevy_egui = { workspace = true }
 bevy-inspector-egui = { workspace = true }
+
 
 [[example]]
 name = "erased_component_registry_example"

@@ -60,17 +60,17 @@ use std::any::TypeId;
 use bevy_ecs::component::Component;
 
 #[derive(Component)]
-#[require(ErasedThing::new::<T>())]
+#[require(ThingTypeId::new::<T>())]
 pub struct Thing<T> {
     _phantom_data: PhantomData<T>,
 }
 
 #[derive(Component)]
-pub struct ErasedThing {
+pub struct ThingTypeId {
     type_id: TypeId,
 }
 
-impl ErasedThing {
+impl ThingTypeId {
     fn new<T: 'static>() -> Self {
         Self {
             type_id: TypeId::of::<Thing<T>>(),
@@ -113,32 +113,13 @@ runtime must be prohibited. And if it's prohibited then your only option to
 define it is during App build inside a plugin. At that point, using `FromWorld`
 is the perfect solution do define that custom constuctor.
 
-## Development of this repository
-
-This repository is using `cargo-make`, it will take care of installing all
-required cargo extensions and rustup components used in this repository.
-
-1. Run `cargo install cargo-make`
-2. (Optional) Install the rest of the tooling/cargo extensions using
-   `cargo make setup`
-
-### Requirements
-
-- [Git LFS](https://git-lfs.github.com/)
-- [Latest Rust Stable](https://rustup.rs/)
-
-### `cargo-make` tasks
-
-- `cargo make all` to run everything that could make ci fail (Everything below)
-- `cargo make build` to build all crates
-- `cargo make test` to test all crates
-- `cargo make format` to format all crates
-- `cargo make lint` to lint all crates using `clippy` and `rustfmt`
-- `cargo make book-build` to build the documentation book
-
 ## Bevy Compatibility Table
 
 | Bevy | bevy_mod_erased_component_registry |
 | ---- | ---------------------------------- |
 | 0.17 | 0.2                                |
 | 0.16 | 0.1                                |
+
+## For Maintainers
+
+See [contributing.md](https://github.com/AlexAegis/bevy_mod_erased_component_registry?tab=contributing-ov-file#contributing)
