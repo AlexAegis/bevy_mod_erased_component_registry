@@ -19,6 +19,7 @@ workspace = true
 default = []
 dev = ["bevy/dynamic_linking"]
 example = ["dev"]
+test = []
 
 [dependencies]
 
