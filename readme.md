@@ -2,6 +2,7 @@
 
 [![crates.io](https://img.shields.io/crates/v/bevy_mod_erased_component_registry.svg)](https://crates.io/crates/bevy_mod_erased_component_registry)
 [![ci](https://github.com/AlexAegis/bevy_mod_erased_component_registry/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAegis/bevy_mod_erased_component_registry/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/AlexAegis/bevy_mod_erased_component_registry/graph/badge.svg?token=8PYdQvJeIY)](https://codecov.io/github/AlexAegis/bevy_mod_erased_component_registry)
 
 Insert components into entities by their `TypeId`!
 
