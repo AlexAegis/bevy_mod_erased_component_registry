@@ -118,6 +118,7 @@ is the perfect solution do define that custom constuctor.
 
 | Bevy | bevy_mod_erased_component_registry |
 | ---- | ---------------------------------- |
+| 0.18 | 0.3                                |
 | 0.17 | 0.2                                |
 | 0.16 | 0.1                                |
 
